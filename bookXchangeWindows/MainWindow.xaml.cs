@@ -23,6 +23,9 @@ namespace bookXchangeWindows
         public MainWindow()
         {
             InitializeComponent();
+            BookApi bapi = new BookApi("AIzaSyADotKuKC73tBgI4hUZkBIcO_EzB5H55DI");
+            var results = bapi.Search("0071745521", 0, 30);
+           
         }
     }
 }
