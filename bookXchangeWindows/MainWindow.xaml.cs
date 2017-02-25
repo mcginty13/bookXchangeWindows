@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace bookXchangeWindows
@@ -23,29 +22,28 @@ namespace bookXchangeWindows
         public MainWindow()
         {
             InitializeComponent();
-            
-           
-           
         }
 
-        public void Search()
+        public Tuple<int?,List<BookModel>> Search(string searchString)
         {
-            string searchString = search_TextBox.Text;
+            
             BookApi bapi = new BookApi("AIzaSyADotKuKC73tBgI4hUZkBIcO_EzB5H55DI");
-            var resultsTuple = bapi.Search(searchString, 0, 1);
-            List<BookModel> resultList = resultsTuple.Item2;
-            Book book = new Book(resultList[0]);
+            Tuple<int?,List<BookModel>> resultsTuple = bapi.Search(searchString, 0, 1);
+            return resultsTuple;
 
-            Title_textblock.Text = book.GetTitle();
-            Subtitle_textblock.Text = book.GetSubtitle();
-            Description_textblock.Text = book.GetDescription();
-            pageCount_textblock.Text = book.GetPageCount().ToString();
-          
         }
 
         private void search_Button_Click(object sender, RoutedEventArgs e)
         {
-            Search();
+            try
+            {
+                Search(search_TextBox.Text);
+            }
+            catch
+            {
+                MessageBox.Show("oops");
+            }
+                
         }
     }
 }

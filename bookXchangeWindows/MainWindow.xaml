@@ -5,24 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bookXchangeWindows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Window1" Height="370.588" Width="360.504">
     <Grid>
-        <StackPanel Orientation="Vertical" Margin="10,10,10,10">
-            <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                <TextBlock Text="Enter ISBN" Margin="0,0,10,0"/>
-                <TextBox x:Name="search_TextBox" Width="100" Margin="20,0,20,0"/>
-                <Button x:Name="search_Button" Width="65" Content="Search" Click="search_Button_Click"  ></Button>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10,10,10,10">
-
-                <TextBlock x:Name="Title_textblock" Text="Title Goes here"/>
-                <TextBlock x:Name="Subtitle_textblock" Text="Subtitle"/>
-                <TextBlock x:Name="Description_textblock" Text="Description" Height="85" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                <TextBlock x:Name="pageCount_textblock" Text="PageCount"/>
-   
-            </StackPanel>
-
-        </StackPanel>
-
+        <TabControl>
+            <TabItem Name="requests" Header="Buy a book" >
+                <StackPanel>
+                    
+                </StackPanel>
+            </TabItem>
+            <TabItem Name="listings" Header="Sell a book">
+                <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+                    <TextBlock Text="Here you can offer books for sale" FontSize="18"/>
+                    <TextBlock Text="Please enter the ISBN of the book that you would like to sell:"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBox x:Name="search_TextBox" Width="140" Margin="10,10,10,10"/>
+                        <Button x:Name="search_Button" Content="Search" Width="50"  Margin="10,10,10,10" Click="search_Button_Click"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock x:Name="bookLink_text" Margin="10,10,10,10" />
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

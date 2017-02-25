@@ -9,16 +9,16 @@ namespace bookXchangeWindows
 {
     class Book
     {
-        string mID;
-        string mISBN;
-        string mTitle;
-        string mSubtitle;
-        string mDescr;
-        int? mPageCount;
-        string mCategory;
-        string mImgURL;
-        bool isRequested;
-        bool isForSale;
+        private string mID;
+        private string mISBN;
+        private string mTitle;
+        private string mSubtitle;
+        private string mDescr;
+        private int? mPageCount;
+        private IList<string> mCategory;
+        private string mImgURL;
+        private bool isRequested;
+        private bool isForSale;
         
         public Book(string pID, string pISBN, string pTitle, string pDescr, string pCategory)
         {
@@ -37,7 +37,8 @@ namespace bookXchangeWindows
             mDescr = pBookModel.Description;
             mPageCount = pBookModel.PageCount;
             mImgURL = pBookModel.ImgLinks;
-
+            mCategory = pBookModel.Categories;
+            
 
         }
 
