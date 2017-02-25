@@ -7,7 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-       
+        <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+            <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                <TextBlock Text="Enter ISBN" Margin="0,0,10,0"/>
+                <TextBox x:Name="search_TextBox" Width="100" Margin="20,0,20,0"/>
+                <Button x:Name="search_Button" Width="65" Content="Search" Click="search_Button_Click"  ></Button>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10,10,10,10">
+
+                <TextBlock x:Name="Title_textblock" Text="Title Goes here"/>
+                <TextBlock x:Name="Subtitle_textblock" Text="Subtitle"/>
+                <TextBlock x:Name="Description_textblock" Text="Description" Height="85" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                <TextBlock x:Name="pageCount_textblock" Text="PageCount"/>
+   
+            </StackPanel>
+
+        </StackPanel>
 
     </Grid>
 </Window>

@@ -9,15 +9,18 @@ namespace bookXchangeWindows
 {
     class Book
     {
-        int mID;
+        string mID;
         string mISBN;
         string mTitle;
+        string mSubtitle;
         string mDescr;
+        int? mPageCount;
         string mCategory;
+        string mImgURL;
         bool isRequested;
         bool isForSale;
         
-        public Book(int pID, string pISBN, string pTitle, string pDescr, string pCategory)
+        public Book(string pID, string pISBN, string pTitle, string pDescr, string pCategory)
         {
             mID = pID;
             mISBN = pISBN;
@@ -26,15 +29,22 @@ namespace bookXchangeWindows
             mCategory = pCategory;
         }
         
-        public Book(string pISBN)
+        public Book(BookModel pBookModel)
         {
-            mISBN = pISBN;
+            mID = pBookModel.Id;
+            mTitle = pBookModel.Title;
+            mSubtitle = pBookModel.Subtitle;
+            mDescr = pBookModel.Description;
+            mPageCount = pBookModel.PageCount;
+            mImgURL = pBookModel.ImgLinks;
+
 
         }
 
-        public void LookUpISBN()
-        {
-            
-        }
+        public string GetTitle() { return mTitle; }
+        public string GetSubtitle() { return mSubtitle; }
+        public string GetDescription() { return mDescr; }
+        public string GetImageURL() { return mImgURL; }
+        public int? GetPageCount() { return mPageCount; }
     }
 }

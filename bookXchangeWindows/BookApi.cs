@@ -36,6 +36,11 @@ namespace bookXchangeWindows
             get;
             set;
         }
+        public string ImgLinks
+        {
+            get;
+            set;
+        }
     }
 
     public class BookApi
@@ -64,6 +69,7 @@ namespace bookXchangeWindows
                 Subtitle = b.VolumeInfo.Subtitle,
                 Description = b.VolumeInfo.Description,
                 PageCount = b.VolumeInfo.PageCount,
+                ImgLinks = b.VolumeInfo.ImageLinks.ToString()
             }).ToList();
             return new Tuple<int?, List<BookModel>>(res.TotalItems, books);
         }

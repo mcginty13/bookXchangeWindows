@@ -23,9 +23,29 @@ namespace bookXchangeWindows
         public MainWindow()
         {
             InitializeComponent();
-            BookApi bapi = new BookApi("AIzaSyADotKuKC73tBgI4hUZkBIcO_EzB5H55DI");
-            var results = bapi.Search("0071745521", 0, 30);
+            
            
+           
+        }
+
+        public void Search()
+        {
+            string searchString = search_TextBox.Text;
+            BookApi bapi = new BookApi("AIzaSyADotKuKC73tBgI4hUZkBIcO_EzB5H55DI");
+            var resultsTuple = bapi.Search(searchString, 0, 1);
+            List<BookModel> resultList = resultsTuple.Item2;
+            Book book = new Book(resultList[0]);
+
+            Title_textblock.Text = book.GetTitle();
+            Subtitle_textblock.Text = book.GetSubtitle();
+            Description_textblock.Text = book.GetDescription();
+            pageCount_textblock.Text = book.GetPageCount().ToString();
+          
+        }
+
+        private void search_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Search();
         }
     }
 }
