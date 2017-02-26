@@ -20,7 +20,7 @@ namespace bookXchangeWindows
         private bool isRequested;
         private bool isForSale;
         
-        public Book(string pID, string pISBN, string pTitle, string pDescr, string pCategory)
+        public Book(string pID, string pISBN, string pTitle, string pDescr, IList<string> pCategory)
         {
             mID = pID;
             mISBN = pISBN;

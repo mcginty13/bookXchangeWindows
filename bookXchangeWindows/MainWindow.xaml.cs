@@ -24,11 +24,11 @@ namespace bookXchangeWindows
             InitializeComponent();
         }
 
-        public Tuple<int?,List<BookModel>> Search(string searchString)
+        public Tuple<int?, List<BookModel>> Search(string searchString)
         {
-            
+
             BookApi bapi = new BookApi("AIzaSyADotKuKC73tBgI4hUZkBIcO_EzB5H55DI");
-            Tuple<int?,List<BookModel>> resultsTuple = bapi.Search(searchString, 0, 1);
+            Tuple<int?, List<BookModel>> resultsTuple = bapi.Search(searchString, 0, 1);
             return resultsTuple;
 
         }
@@ -37,13 +37,22 @@ namespace bookXchangeWindows
         {
             try
             {
-                Search(search_TextBox.Text);
+                var results = Search(search_TextBox.Text);
+                if (results.Item1 == 0)
+                {
+                    MessageBox.Show("No Books Found");
+                }
+                else
+                {
+                    Window sw = new SelectWindow(results.Item2);
+                    sw.Show();
+                }
             }
             catch
             {
                 MessageBox.Show("oops");
             }
-                
+
         }
     }
 }

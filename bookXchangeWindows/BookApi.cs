@@ -31,6 +31,11 @@ namespace bookXchangeWindows
             get;
             set;
         }
+        public string Author
+        {
+            get;
+            set;
+        }
         public int? PageCount
         {
             get;
@@ -46,7 +51,6 @@ namespace bookXchangeWindows
             get;
             set;
         }
-
     }
 
     public class BookApi
@@ -77,6 +81,7 @@ namespace bookXchangeWindows
                 PageCount = b.VolumeInfo.PageCount,
                 ImgLinks = b.VolumeInfo.ImageLinks.Thumbnail,
                 Categories = b.VolumeInfo.Categories,
+                Author = b.VolumeInfo.Authors[0]
                 
                 
             }).ToList();
