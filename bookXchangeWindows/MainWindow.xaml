@@ -10,7 +10,7 @@
         <TabControl>
             <TabItem Name="requests" Header="Buy a book" >
                 <StackPanel>
-                    
+
                 </StackPanel>
             </TabItem>
             <TabItem Name="listings" Header="Sell a book">
@@ -21,9 +21,21 @@
                         <TextBox x:Name="search_TextBox" Width="140" Margin="10,10,10,10"/>
                         <Button x:Name="search_Button" Content="Search" Width="50"  Margin="10,10,10,10" Click="search_Button_Click"/>
                     </StackPanel>
-                    <StackPanel>
-                        <TextBlock x:Name="bookLink_text" Margin="10,10,10,10" />
+                    <TextBlock FontSize="16"  Text="You are selling the book:"/>
+                    <TextBlock x:Name="bookName_Text" FontSize="16" Text="Book Name" />
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                        <TextBlock  Text="ISBN" Margin="0,0,20,0"/>
+                        <TextBlock x:Name="ISBN_Text"/>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Author" Margin="0,0,20,0"/>
+                        <TextBlock x:Name="author_Text"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                        <TextBlock Text="Please enter a price:"/>
+                        <TextBox x:Name="price_TextBox" Width="80" Margin="20,0,20,0"/>
+                    </StackPanel>
+                    <Button x:Name="sell_button" Content="Sell Me!" Height="50" Width="80" Margin="25"/>
                 </StackPanel>
             </TabItem>
         </TabControl>

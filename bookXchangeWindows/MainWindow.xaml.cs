@@ -19,10 +19,12 @@ namespace bookXchangeWindows
     /// </summary>
     public partial class MainWindow : Window
     {
+        Book selectedBook;
         public MainWindow()
         {
             InitializeComponent();
         }
+
 
         public Tuple<int?, List<BookModel>> Search(string searchString)
         {
@@ -32,9 +34,17 @@ namespace bookXchangeWindows
             return resultsTuple;
 
         }
+        
+        public void UpdateLabels()
+        {
+            bookName_Text.Text = selectedBook.GetTitle();
+            ISBN_Text.Text = selectedBook.GetISBN();
+            author_Text.Text = selectedBook.GetAuthor();
+        }
 
         private void search_Button_Click(object sender, RoutedEventArgs e)
         {
+            BookModel returnedBookModel;
             try
             {
                 var results = Search(search_TextBox.Text);
@@ -44,8 +54,10 @@ namespace bookXchangeWindows
                 }
                 else
                 {
-                    Window sw = new SelectWindow(results.Item2);
-                    sw.Show();
+                    SelectWindow sw = new SelectWindow(results.Item2);
+                    returnedBookModel = sw.ShowBookModelDialog();
+                    selectedBook = new Book(returnedBookModel);
+                    UpdateLabels();
                 }
             }
             catch

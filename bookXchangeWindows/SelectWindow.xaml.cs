@@ -29,7 +29,7 @@ namespace bookXchangeWindows
             booklist = pBookList;
         }
 
-        BookModel activeBM;
+        public BookModel activeBM { get; set; }
         public ImageSource GetImage(String pUrl)
         {
             var image = new BitmapImage();
@@ -72,6 +72,7 @@ namespace bookXchangeWindows
         }
         private void select_button_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
 
         }
 
@@ -81,6 +82,13 @@ namespace bookXchangeWindows
             activeBM = booklist[selectedbookIndex];
             UpdateContent(activeBM);
         }
+        public BookModel ShowBookModelDialog()
+{
+    
+    this.ShowDialog();
+   
+    return activeBM;
+}
 
     }
 }

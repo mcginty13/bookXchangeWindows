@@ -51,6 +51,11 @@ namespace bookXchangeWindows
             get;
             set;
         }
+        public string ISBN
+        {
+            get;
+            set;
+                    }
     }
 
     public class BookApi
@@ -75,6 +80,7 @@ namespace bookXchangeWindows
             var books = res.Items.Select(b => new BookModel
             {
                 Id = b.Id,
+                ISBN = query,
                 Title = b.VolumeInfo.Title,
                 Subtitle = b.VolumeInfo.Subtitle,
                 Description = b.VolumeInfo.Description,

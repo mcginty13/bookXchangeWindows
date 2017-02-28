@@ -14,6 +14,7 @@ namespace bookXchangeWindows
         private string mTitle;
         private string mSubtitle;
         private string mDescr;
+        private string mAuthor;
         private int? mPageCount;
         private IList<string> mCategory;
         private string mImgURL;
@@ -32,19 +33,23 @@ namespace bookXchangeWindows
         public Book(BookModel pBookModel)
         {
             mID = pBookModel.Id;
+            mISBN = pBookModel.ISBN;
             mTitle = pBookModel.Title;
             mSubtitle = pBookModel.Subtitle;
             mDescr = pBookModel.Description;
             mPageCount = pBookModel.PageCount;
             mImgURL = pBookModel.ImgLinks;
             mCategory = pBookModel.Categories;
-            
+            mAuthor = pBookModel.Author;
+
 
         }
 
+        public string GetISBN() { return mISBN; }
         public string GetTitle() { return mTitle; }
         public string GetSubtitle() { return mSubtitle; }
         public string GetDescription() { return mDescr; }
+        public string GetAuthor() { return mAuthor; }
         public string GetImageURL() { return mImgURL; }
         public int? GetPageCount() { return mPageCount; }
     }
