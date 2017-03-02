@@ -19,13 +19,16 @@ namespace bookXchangeWindows
 
         public User(string pID ,string pName, string pEmail, string pCourse, int pYear)
         {
-            string mID = pID;
-            string mName = pName;
-            string mEmail = pEmail;
-            string mCourse = pCourse;
-            int mYear = pYear;
+            mID = pID;
+            mName = pName;
+            mEmail = pEmail;
+            mCourse = pCourse;
+            mYear = pYear;
             bookRequested = new List<Book>();
             bookForSale = new List<Book>();
         }
+
+        public string GetID() { return mID; }
+        
     }   
 }

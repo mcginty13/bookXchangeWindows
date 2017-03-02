@@ -20,9 +20,11 @@ namespace bookXchangeWindows
     public partial class MainWindow : Window
     {
         Book selectedBook;
+        User activeUser = new User("1234", "Dan", "test@test.com", "compSci", 1);
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
 
@@ -65,6 +67,33 @@ namespace bookXchangeWindows
                 MessageBox.Show("oops");
             }
 
+        }
+
+        private bool CreateNewListing(Book pBook)
+        {
+            int price;
+            try
+            {
+                price = Convert.ToInt16(price_TextBox.Text);
+                Listing listing = new Listing(activeUser, pBook, true, price);
+                return true;
+            }
+            catch
+            {
+                MessageBox.Show("Please enter a valid price");
+                return false;
+            }
+            
+
+
+
+            
+
+        }
+
+        private void sell_button_Click(object sender, RoutedEventArgs e)
+        {
+            CreateNewListing(selectedBook);
         }
     }
 }

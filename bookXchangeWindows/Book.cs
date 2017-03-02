@@ -45,6 +45,7 @@ namespace bookXchangeWindows
 
         }
 
+        public string GetID() { return mID; }
         public string GetISBN() { return mISBN; }
         public string GetTitle() { return mTitle; }
         public string GetSubtitle() { return mSubtitle; }

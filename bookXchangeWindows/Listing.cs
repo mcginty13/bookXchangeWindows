@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace bookXchangeWindows
 {
-    abstract class Listing : ISerializable
+    class Listing : ISerializable
     {
         string mListingID;
         string mBookID;
@@ -20,6 +20,16 @@ namespace bookXchangeWindows
         {
             mUserID = pUserID;
             mBookID = pBookID;
+            mListedDate = DateTime.Now;
+            mIsRequest = pIsRequest;
+            mPrice = pPrice;
+        }
+
+        public Listing(User pUser, Book pBook, bool pIsRequest, int pPrice )
+        {
+            mListingID = "1"; // test value
+            mBookID = pBook.GetID();
+            mUserID = pUser.GetID();
             mListedDate = DateTime.Now;
             mIsRequest = pIsRequest;
             mPrice = pPrice;

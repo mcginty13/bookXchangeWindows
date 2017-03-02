@@ -25,7 +25,7 @@
                         <TextBlock x:Name="title_TextBlock" Text="Title" FontSize="16" TextWrapping="Wrap"/>
                         <TextBlock x:Name="subtitle_Textblock" Text="Subtitle" FontSize="12" TextWrapping="Wrap" Margin="0,0,0,4"/>
                         <TextBlock x:Name="authors_Textblock" Text="Author(s)" Margin="0,0,0,4"/>
-                        <TextBlock x:Name="descr_Textblock" Text="Here goes the description" TextWrapping="Wrap" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="176"/>
+                        <TextBlock x:Name="descr_Textblock" Text="Here goes the description" TextWrapping="Wrap" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="176" Height="138"/>
                     </StackPanel>
                 </StackPanel>
                 <TextBlock x:Name="pagecount_Textblock" Text="Pagecount" />

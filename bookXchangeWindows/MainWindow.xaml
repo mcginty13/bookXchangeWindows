@@ -35,7 +35,7 @@
                         <TextBlock Text="Please enter a price:"/>
                         <TextBox x:Name="price_TextBox" Width="80" Margin="20,0,20,0"/>
                     </StackPanel>
-                    <Button x:Name="sell_button" Content="Sell Me!" Height="50" Width="80" Margin="25"/>
+                    <Button x:Name="sell_button" Content="Sell Me!" Height="50" Width="80" Margin="25" Click="sell_button_Click"/>
                 </StackPanel>
             </TabItem>
         </TabControl>
