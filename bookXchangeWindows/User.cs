@@ -13,8 +13,8 @@ namespace bookXchangeWindows
         private string mEmail;
         private string mCourse;
         private int mYear;
-        private List<Book> bookRequested;
-        private List<Book> bookForSale;
+        private List<Book> booksRequested;
+        private List<Book> booksForSale;
 
 
         public User(string pID ,string pName, string pEmail, string pCourse, int pYear)
@@ -24,8 +24,8 @@ namespace bookXchangeWindows
             string mEmail = pEmail;
             string mCourse = pCourse;
             int mYear = pYear;
-            bookRequested = new List<Book>();
-            bookForSale = new List<Book>();
+            booksRequested = new List<Book>();
+            booksForSale = new List<Book>();
         }
     }   
 }

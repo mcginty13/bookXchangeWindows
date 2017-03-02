@@ -30,6 +30,7 @@ namespace bookXchangeWindows
         }
 
         BookModel activeBM;
+        public BookModel finalBM { get; set; }
         public ImageSource GetImage(String pUrl)
         {
             var image = new BitmapImage();
@@ -72,7 +73,7 @@ namespace bookXchangeWindows
         }
         private void select_button_Click(object sender, RoutedEventArgs e)
         {
-
+            finalBM = activeBM;
         }
 
         private void lvBookResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -82,5 +83,9 @@ namespace bookXchangeWindows
             UpdateContent(activeBM);
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            finalBM = activeBM;
+        }
     }
 }

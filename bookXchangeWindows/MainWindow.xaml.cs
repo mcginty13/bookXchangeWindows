@@ -32,7 +32,7 @@ namespace bookXchangeWindows
             return resultsTuple;
 
         }
-
+        BookModel activeBM;
         private void search_Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -46,6 +46,7 @@ namespace bookXchangeWindows
                 {
                     Window sw = new SelectWindow(results.Item2);
                     sw.Show();
+                    
                 }
             }
             catch
