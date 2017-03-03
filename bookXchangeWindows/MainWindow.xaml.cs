@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Runtime.Serialization;
+using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace bookXchangeWindows
 {
@@ -72,23 +76,45 @@ namespace bookXchangeWindows
         private bool CreateNewListing(Book pBook)
         {
             int price;
-            try
-            {
+           
                 price = Convert.ToInt16(price_TextBox.Text);
                 Listing listing = new Listing(activeUser, pBook, true, price);
-                return true;
-            }
-            catch
-            {
-                MessageBox.Show("Please enter a valid price");
+                SerializeAndSend(listing);
+               
+           
+             MessageBox.Show("Please enter a valid price");
                 return false;
+            
+            
+            
+        }
+
+        private bool SerializeAndSend(Listing pListing)
+        {
+            try
+            {
+                Int32 port = 42004;
+                string ipAdd = "127.0.0.1";
+
+                TcpClient client = new TcpClient(ipAdd, port);
+
+                IFormatter formatter = new BinaryFormatter();
+                NetworkStream stream = client.GetStream();
+
+                formatter.Serialize(stream, pListing);
             }
-            
+            catch (ArgumentNullException e)
+            {
+                MessageBox.Show("ArgumentNullException: {0}", Convert.ToString(e));
+            }
+            catch (SocketException e)
+            {
+                MessageBox.Show("SocketException: {0}", Convert.ToString(e));
+            }
 
 
 
-            
-
+            return true;
         }
 
         private void sell_button_Click(object sender, RoutedEventArgs e)
