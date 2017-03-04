@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace bookXchangeWindows
+namespace ClassLibrary1
 {
-    class Book
+    public class Book
     {
         private string mID;
         private string mISBN;
@@ -20,7 +19,7 @@ namespace bookXchangeWindows
         private string mImgURL;
         private bool isRequested;
         private bool isForSale;
-        
+
         public Book(string pID, string pISBN, string pTitle, string pDescr, IList<string> pCategory)
         {
             mID = pID;
@@ -29,7 +28,7 @@ namespace bookXchangeWindows
             mDescr = pDescr;
             mCategory = pCategory;
         }
-        
+
         public Book(BookModel pBookModel)
         {
             mID = pBookModel.Id;

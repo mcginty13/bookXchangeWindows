@@ -15,6 +15,7 @@ using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Xml.Serialization;
+using ClassLibrary1;
 
 namespace bookXchangeWindows
 {
@@ -43,9 +44,20 @@ namespace bookXchangeWindows
 
         public void UpdateLabels()
         {
-            bookName_Text.Text = selectedBook.GetTitle();
+            if (selectedBook == null)
+            {
+                bookName_Text.Text = "Name";
+                ISBN_Text.Text = "isbn";
+                author_Text.Text = "author";
+               
+            }
+            else
+            {
+bookName_Text.Text = selectedBook.GetTitle();
             ISBN_Text.Text = selectedBook.GetISBN();
             author_Text.Text = selectedBook.GetAuthor();
+            }
+            
         }
 
         private void search_Button_Click(object sender, RoutedEventArgs e)
@@ -91,7 +103,8 @@ namespace bookXchangeWindows
             if (priceSuccess)
             {
                 Listing listing = new Listing(activeUser, pBook, true, price);
-                bool sendSuccess = SerializeAndSend(listing);
+                DataSender.Send(listing);
+                bool sendSuccess = true;
                 if (sendSuccess)
                 {
                     MessageBox.Show("listing created successfully");
@@ -137,7 +150,17 @@ namespace bookXchangeWindows
 
         private void sell_button_Click(object sender, RoutedEventArgs e)
         {
-            CreateNewListing(selectedBook);
+            if (selectedBook == null)
+            {
+                MessageBox.Show("Please select a book first.");
+            }
+            else
+            {
+                CreateNewListing(selectedBook);
+                selectedBook = null;
+                UpdateLabels();
+            }
+          
         }
     }
 }

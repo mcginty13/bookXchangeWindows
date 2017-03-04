@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Google.Apis.Services;
 using Google.Apis.Books.v1;
 
-namespace bookXchangeWindows
+
+namespace ClassLibrary1
 {
     public class BookModel
     {
@@ -47,7 +47,7 @@ namespace bookXchangeWindows
             set;
         }
         public IList<string> Categories
-         {
+        {
             get;
             set;
         }
@@ -55,7 +55,7 @@ namespace bookXchangeWindows
         {
             get;
             set;
-                    }
+        }
     }
 
     public class BookApi
@@ -71,7 +71,7 @@ namespace bookXchangeWindows
 
             });
         }
-        public Tuple < int ? , List<BookModel>> Search(string query, int offset, int count)
+        public Tuple<int?, List<BookModel>> Search(string query, int offset, int count)
         {
             var listQuery = _booksService.Volumes.List(query);
             listQuery.MaxResults = count;
@@ -88,8 +88,8 @@ namespace bookXchangeWindows
                 ImgLinks = b.VolumeInfo.ImageLinks.Thumbnail,
                 Categories = b.VolumeInfo.Categories,
                 Author = b.VolumeInfo.Authors[0]
-                
-                
+
+
             }).ToList();
             return new Tuple<int?, List<BookModel>>(res.TotalItems, books);
         }
