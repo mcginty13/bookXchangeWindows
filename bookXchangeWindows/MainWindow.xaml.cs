@@ -11,10 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Runtime.Serialization;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace bookXchangeWindows
 {
@@ -40,7 +40,7 @@ namespace bookXchangeWindows
             return resultsTuple;
 
         }
-        
+
         public void UpdateLabels()
         {
             bookName_Text.Text = selectedBook.GetTitle();
@@ -73,20 +73,34 @@ namespace bookXchangeWindows
 
         }
 
-        private bool CreateNewListing(Book pBook)
+        private void CreateNewListing(Book pBook)
         {
             int price;
-           
+            bool priceSuccess;
+            try
+            {
                 price = Convert.ToInt16(price_TextBox.Text);
+                priceSuccess = true;
+            }
+            catch
+            {
+                MessageBox.Show("Please enter a valid price");
+                price = 0;
+                priceSuccess = false;
+            }
+            if (priceSuccess)
+            {
                 Listing listing = new Listing(activeUser, pBook, true, price);
-                SerializeAndSend(listing);
-               
-           
-             MessageBox.Show("Please enter a valid price");
-                return false;
-            
-            
-            
+                bool sendSuccess = SerializeAndSend(listing);
+                if (sendSuccess)
+                {
+                    MessageBox.Show("listing created successfully");
+                }
+                else
+                {
+                    MessageBox.Show("Listing failed.");
+                }
+            }
         }
 
         private bool SerializeAndSend(Listing pListing)
@@ -97,24 +111,28 @@ namespace bookXchangeWindows
                 string ipAdd = "127.0.0.1";
 
                 TcpClient client = new TcpClient(ipAdd, port);
-
-                IFormatter formatter = new BinaryFormatter();
+                XmlSerializer serializer = new XmlSerializer(typeof(Listing));
+                
                 NetworkStream stream = client.GetStream();
 
-                formatter.Serialize(stream, pListing);
+                serializer.Serialize(stream, pListing);
+                stream.Flush();
+                return true;
             }
             catch (ArgumentNullException e)
             {
                 MessageBox.Show("ArgumentNullException: {0}", Convert.ToString(e));
+                return false;
             }
             catch (SocketException e)
             {
                 MessageBox.Show("SocketException: {0}", Convert.ToString(e));
+                return false;
             }
 
 
 
-            return true;
+        
         }
 
         private void sell_button_Click(object sender, RoutedEventArgs e)
